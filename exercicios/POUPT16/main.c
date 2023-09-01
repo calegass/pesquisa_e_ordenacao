@@ -4,37 +4,25 @@ int compara (const void * a, const void * b) {
 }
 int main()
 {
-    Nom* tree;
+    Nom* tree = cria_nom(1);
     int nro_casos;
     int nro_nos;
     int *pais;
     int i;
-    Nom *maior;
 
     scanf("%d", &nro_casos);
     while (nro_casos > 0)
     {
         scanf("%d", &nro_nos);
-        tree = cria_nom(1);
         pais = (int*)malloc(sizeof(int)*(nro_casos)-1);
-        for (i=0;i<nro_nos-1; i++)
-         scanf("%d", &pais[i]);
-        
         qsort(pais,nro_nos-1, sizeof(int), compara);
-        for (i=0; i<nro_nos-1; i++)
-            insere(tree, i+2, pais[i]);
+        for (i=2; i<=nro_nos; i++)
+            insere(tree, i, pais[i]);
 
 
         nro_casos--;
-        mostra(tree);
-        infecta(tree,nro_nos);
-    //    mostra(tree);
-    //    mais_filhos(tree, &maior);
-        printf("MAIS filhos: %d",maior->info);
-     //   libera_arvorem(tree);
-        tree=NULL;
     }
-
+    mostra(tree);
 
     return 0;
 }
